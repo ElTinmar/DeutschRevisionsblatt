@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import (
 import sys
 import pandas as pd
 
-# maybe create a parent Widget that counts correct answer 
+# create a parent Widget that counts correct answer 
 # and give feedback. Inherit from that to create different 
 # exercises
 

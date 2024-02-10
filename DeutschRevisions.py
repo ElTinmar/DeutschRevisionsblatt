@@ -6,14 +6,57 @@ from PyQt5.QtWidgets import (
 import sys
 import pandas as pd
 
+class IrregularVerbTranslation(QWidget):
+
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
+
+class IrregularVerb(QWidget):
+    
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
+
+class DeclensionDefinite(QWidget):
+    
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
+
+class DeclensionIndefinite(QWidget):
+    
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
+
+class DeclensionNull(QWidget):
+    
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
+
+class DeclensionReflected(QWidget):
+    
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
+
+class DeclensionPersonal(QWidget):
+    
+    def __init__(self, *args, **kwargs) -> None:    
+        super().__init__(*args, **kwargs)
+
 DATA = [
-    ('irregular verbs', 'irregular_verbs.csv'),
-    ('declensions: definite', 'declensions_definite.csv'),
-    ('declensions: indefinite', 'declensions_indefinite.csv'),
-    ('declensions: nullartikel', 'declensions_nullartikel.csv'),
-    ('declensions: reflected pronouns', 'declensions_reflected_pronouns.csv'),
-    ('declensions: personal pronouns', 'declensions_personal_pronouns.csv')
+    ('irregular verbs', 'irregular_verbs.csv', IrregularVerb),
+    ('irregular verbs: translation', 'irregular_verbs.csv', IrregularVerbTranslation),
+    ('declensions: definite', 'declensions_definite.csv', DeclensionDefinite),
+    ('declensions: indefinite', 'declensions_indefinite.csv', DeclensionIndefinite),
+    ('declensions: nullartikel', 'declensions_nullartikel.csv', DeclensionNull),
+    ('declensions: reflected pronouns', 'declensions_reflected_pronouns.csv', DeclensionReflected),
+    ('declensions: personal pronouns', 'declensions_personal_pronouns.csv', DeclensionPersonal)
 ]   
+
 
 class DeutschRevisions(QMainWindow):
 

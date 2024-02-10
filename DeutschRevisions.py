@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (
 )
 import sys
 import pandas as pd
+from abc import abstractmethod
 
 # create a parent Widget that counts correct answer 
 # and give feedback. Inherit from that to create different 
@@ -13,10 +14,20 @@ import pandas as pd
 
 class Exercise(QWidget):
 
-    def __init__(self, data: pd.DataFrame, *args, **kwargs) -> None:    
+    def __init__(
+            self, 
+            data: pd.DataFrame, 
+            num_questions: int = 10, 
+            *args, 
+            **kwargs
+        ) -> None:
+
         super().__init__(*args, **kwargs)
         self.create_components()
         self.layout_components()
+        self.correct_answers = 0
+        self.num_questions = num_questions
+        self.current_question = 0
 
     def create_components(self):
 
@@ -30,7 +41,22 @@ class Exercise(QWidget):
     def layout_components(self):
         pass
 
+    def next_question(self):
+        self.current_question += 1
+        if self.current_question < self.num_questions:
+            self.generate_question()
+
     def validate_answer(self):
+        if self.check():
+            self.correct_answers += 1
+        self.next_question()
+
+    @abstractmethod
+    def generate_question(self):
+        pass
+        
+    @abstractmethod
+    def check(self, *args , **kwargs) -> bool:
         pass
 
 class IrregularVerbTranslation(Exercise):

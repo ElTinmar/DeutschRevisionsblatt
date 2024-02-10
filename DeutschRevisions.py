@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import (
     QMainWindow, QApplication, 
-    QWidget, QVBoxLayout, 
-    QHBoxLayout, QComboBox
+    QWidget, QComboBox, 
+    QPushButton, QLabel,
+    QVBoxLayout, QHBoxLayout
 )
 import sys
 import pandas as pd
@@ -14,6 +15,23 @@ class Exercise(QWidget):
 
     def __init__(self, data: pd.DataFrame, *args, **kwargs) -> None:    
         super().__init__(*args, **kwargs)
+        self.create_components()
+        self.layout_components()
+
+    def create_components(self):
+
+        self.validate = QPushButton(self)
+        self.validate.setText('validate')
+        self.validate.clicked.connect(self.validate_answer)
+
+        self.question_number = QLabel(self)
+        self.right_answers = QLabel(self)
+
+    def layout_components(self):
+        pass
+
+    def validate_answer(self):
+        pass
 
 class IrregularVerbTranslation(Exercise):
     pass

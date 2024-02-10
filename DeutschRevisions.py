@@ -27,6 +27,7 @@ class DeutschRevisions(QMainWindow):
         self.layout_components()
         self.show()
 
+
     def create_components(self):
 
         self.revision = QComboBox(self)
@@ -34,7 +35,9 @@ class DeutschRevisions(QMainWindow):
             self.revision.addItem(item[0])
         self.revision.currentIndexChanged.connect(self.load_data)
 
+
     def layout_components(self):
+
         main_widget = QWidget()
 
         main_layout = QVBoxLayout(main_widget)
@@ -42,9 +45,12 @@ class DeutschRevisions(QMainWindow):
 
         self.setCentralWidget(main_widget)
 
+
     def load_data(self, index: int) -> None:
+        
         filename = DATA[index][1]
         self.data = pd.read_csv(filename)
+
 
 if __name__ == '__main__':
 

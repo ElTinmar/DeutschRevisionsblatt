@@ -29,7 +29,7 @@ class Exercise(QWidget):
         self.num_questions = num_questions
         self.current_question = 0
 
-    def create_components(self):
+    def create_components(self) -> None:
 
         self.validate = QPushButton(self)
         self.validate.setText('validate')
@@ -38,21 +38,23 @@ class Exercise(QWidget):
         self.question_number = QLabel(self)
         self.right_answers = QLabel(self)
 
-    def layout_components(self):
+    def layout_components(self) -> None:
         pass
 
-    def next_question(self):
+    def next_question(self) -> None:
         self.current_question += 1
-        if self.current_question < self.num_questions:
+        self.question_number.setText(f'{self.current_question}')
+        if self.current_question <= self.num_questions:
             self.generate_question()
 
-    def validate_answer(self):
+    def validate_answer(self) -> None:
         if self.check():
             self.correct_answers += 1
+            self.right_answers.setText(f'{self.correct_answers}')
         self.next_question()
 
     @abstractmethod
-    def generate_question(self):
+    def generate_question(self) -> None:
         pass
         
     @abstractmethod
@@ -103,7 +105,7 @@ class DeutschRevisions(QMainWindow):
         self.show()
 
 
-    def create_components(self):
+    def create_components(self) -> None:
 
         self.revision = QComboBox(self)
         for item in DATA:
@@ -111,7 +113,7 @@ class DeutschRevisions(QMainWindow):
         self.revision.currentIndexChanged.connect(self.load_data)
 
 
-    def layout_components(self):
+    def layout_components(self) -> None:
 
         main_widget = QWidget()
 

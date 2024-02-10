@@ -47,6 +47,7 @@ class DeclensionPersonal(QWidget):
     def __init__(self, *args, **kwargs) -> None:    
         super().__init__(*args, **kwargs)
 
+
 DATA = [
     ('irregular verbs', 'irregular_verbs.csv', IrregularVerb),
     ('irregular verbs: translation', 'irregular_verbs.csv', IrregularVerbTranslation),
@@ -56,7 +57,6 @@ DATA = [
     ('declensions: reflected pronouns', 'declensions_reflected_pronouns.csv', DeclensionReflected),
     ('declensions: personal pronouns', 'declensions_personal_pronouns.csv', DeclensionPersonal)
 ]   
-
 
 class DeutschRevisions(QMainWindow):
 

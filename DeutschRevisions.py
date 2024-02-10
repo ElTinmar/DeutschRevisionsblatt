@@ -66,6 +66,7 @@ class DeutschRevisions(QMainWindow):
 
         self.setWindowTitle('DeutschRevisions')
         self.data = None
+        self.exercise_widget = QWidget()
         self.create_components()
         self.layout_components()
         self.show()
@@ -85,6 +86,7 @@ class DeutschRevisions(QMainWindow):
 
         main_layout = QVBoxLayout(main_widget)
         main_layout.addWidget(self.revision)
+        main_layout.addWidget(self.exercise_widget)
 
         self.setCentralWidget(main_widget)
 
@@ -93,7 +95,7 @@ class DeutschRevisions(QMainWindow):
         
         filename = DATA[index][1]
         self.data = pd.read_csv(filename)
-
+        self.exercise_widget = DATA[index][2]()
 
 if __name__ == '__main__':
 

@@ -6,47 +6,35 @@ from PyQt5.QtWidgets import (
 import sys
 import pandas as pd
 
-class IrregularVerbTranslation(QWidget):
+# maybe create a parent Widget that counts correct answer 
+# and give feedback. Inherit from that to create different 
+# exercises
 
-    def __init__(self, *args, **kwargs) -> None:    
+class Exercise(QWidget):
+
+    def __init__(self, data: pd.DataFrame, *args, **kwargs) -> None:    
         super().__init__(*args, **kwargs)
 
+class IrregularVerbTranslation(Exercise):
+    pass
 
-class IrregularVerb(QWidget):
-    
-    def __init__(self, *args, **kwargs) -> None:    
-        super().__init__(*args, **kwargs)
+class IrregularVerb(Exercise):
+    pass
 
+class DeclensionDefinite(Exercise):
+    pass
 
-class DeclensionDefinite(QWidget):
-    
-    def __init__(self, *args, **kwargs) -> None:    
-        super().__init__(*args, **kwargs)
+class DeclensionIndefinite(Exercise):
+    pass
 
+class DeclensionNull(Exercise):
+    pass
 
-class DeclensionIndefinite(QWidget):
-    
-    def __init__(self, *args, **kwargs) -> None:    
-        super().__init__(*args, **kwargs)
+class DeclensionReflected(Exercise):
+    pass
 
-
-class DeclensionNull(QWidget):
-    
-    def __init__(self, *args, **kwargs) -> None:    
-        super().__init__(*args, **kwargs)
-
-
-class DeclensionReflected(QWidget):
-    
-    def __init__(self, *args, **kwargs) -> None:    
-        super().__init__(*args, **kwargs)
-
-
-class DeclensionPersonal(QWidget):
-    
-    def __init__(self, *args, **kwargs) -> None:    
-        super().__init__(*args, **kwargs)
-
+class DeclensionPersonal(Exercise):
+    pass
 
 DATA = [
     ('irregular verbs', 'irregular_verbs.csv', IrregularVerb),
@@ -65,7 +53,6 @@ class DeutschRevisions(QMainWindow):
         super().__init__(*args, **kwargs)
 
         self.setWindowTitle('DeutschRevisions')
-        self.data = None
         self.exercise_widget = QWidget()
         self.create_components()
         self.layout_components()
@@ -94,8 +81,8 @@ class DeutschRevisions(QMainWindow):
     def load_data(self, index: int) -> None:
         
         filename = DATA[index][1]
-        self.data = pd.read_csv(filename)
-        self.exercise_widget = DATA[index][2]()
+        data = pd.read_csv(filename)
+        self.exercise_widget = DATA[index][2](data)
 
 if __name__ == '__main__':
 

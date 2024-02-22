@@ -23,23 +23,33 @@ class Exercise(QWidget):
         ) -> None:
 
         super().__init__(*args, **kwargs)
-        self.create_components()
-        self.layout_components()
         self.correct_answers = 0
         self.num_questions = num_questions
         self.current_question = 0
+        self.create_components()
+        self.layout_components()
 
     def create_components(self) -> None:
 
+        self.question = QWidget(self)
         self.validate = QPushButton(self)
         self.validate.setText('validate')
         self.validate.clicked.connect(self.validate_answer)
 
         self.question_number = QLabel(self)
+        self.question_number.setText(f'{self.current_question}')
         self.right_answers = QLabel(self)
-
+        self.right_answers.setText(f'{self.corr}') 
+    
     def layout_components(self) -> None:
-        pass
+        
+        main_layout = QHBoxLayout(self)
+        main_layout.addStretch()
+        main_layout.addWidget(self.question)
+        main_layout.addWidget(self.validate)
+        main_layout.addWidget(self.question_number)
+        main_layout.addWidget(self.right_answers)
+        main_layout.addStretch()
 
     def next_question(self) -> None:
         self.current_question += 1
